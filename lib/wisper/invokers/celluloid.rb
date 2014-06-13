@@ -19,7 +19,7 @@ module Wisper
 
         def method_missing(method, *args, &block)
           listener.public_send(method, *args, &block)
-          # terminate
+          terminate
         end
       end
     end
