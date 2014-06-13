@@ -1,5 +1,12 @@
 describe Wisper::Invokers::Celluloid do
-  before { $thread_id = Thread.current.object_id }
+  FILE_PATH = Pathname(File.dirname(__FILE__)).join('test_file')
+  SLEEP_FOR = 2
+
+  after do
+    system("rm #{FILE_PATH}") if File.exist?(FILE_PATH)
+  end
+
+  let(:publisher) { MyPublisher.new }
 
   class MyPublisher
     include Wisper::Publisher
@@ -11,47 +18,52 @@ describe Wisper::Invokers::Celluloid do
 
   class MyListener
     def pong
-      $thread_id = Thread.current.object_id
-      puts Thread.current.object_id
-      sleep(5)
+      touch_file
+      sleep(SLEEP_FOR)
+    end
+
+    private
+
+    def touch_file
+      File.open(FILE_PATH, 'w') { |file| file.write(Thread.current.object_id) }
     end
   end
 
   # for sanity...
   describe 'without Invoker::Celluloid' do
-    it 'is slow without celluloid invoker' do
-      pub = MyPublisher.new
-      pub.add_listener(MyListener.new)
-      duration = time { pub.ping }
-      expect(duration).to be > 4
-    end
-
-    it 'is executed in the same thread' do
-      pub = MyPublisher.new
-      pub.add_listener(MyListener.new)
-      pub.ping
-      expect(Thread.current.object_id).to eq($thread_id)
+    it "takes longer than #{SLEEP_FOR} seconds" do
+      publisher.add_listener(MyListener.new)
+      duration = time { publisher.ping }
+      expect(duration).to be > SLEEP_FOR
+      expect(file_touched?).to eql true
+      expect(file_thread_id).to eql Thread.current.object_id.to_s
     end
   end
 
-  it 'returns quickly with celluloid invoker' do
-    pub = MyPublisher.new
-    pub.add_listener(MyListener.new, invoker: Wisper::Invokers::Celluloid.new)
-    duration = time { pub.ping }
-    expect(duration).to be < 1
-  end
-
-  # failing sometimes... (order dependent)
-  it 'is executed in a different thread' do
-    pub = MyPublisher.new
-    pub.add_listener(MyListener.new, invoker: Wisper::Invokers::Celluloid.new)
-    pub.ping
-    expect(Thread.current.object_id).to_not eq($thread_id)
+  it "takes less than #{SLEEP_FOR} seconds" do
+    publisher.add_listener(MyListener.new, invoker: subject)
+    duration = time { publisher.ping }
+    expect(duration).to be < SLEEP_FOR
+    expect(file_touched?).to eql true
+    expect(file_thread_id).to_not eql Thread.current.object_id.to_s
   end
 
   def time(&block)
     start = Time.now
     yield
     Time.now - start
+  end
+
+  def file_touched?
+    resolution = 0.1
+    (SLEEP_FOR / resolution).to_i.times do
+      return true if File.exist?(FILE_PATH)
+      sleep(resolution)
+    end
+    return false
+  end
+
+  def file_thread_id
+    File.read(FILE_PATH)
   end
 end
