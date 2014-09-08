@@ -1,6 +1,7 @@
 # Wisper::Celluloid [WIP]
 
-Provides async event broadcasting to Wisper gem using Celluloid.
+Provides async event broadcasting to Wisper gem using
+[Celluloid](https://github.com/celluloid/celluloid).
 
 ## Installation
 
@@ -9,13 +10,9 @@ Provides async event broadcasting to Wisper gem using Celluloid.
 ## Usage
 
 ```ruby
-my_publisher.add_listener(MyListener.new, invoker: Wisper::Invokers::Celluloid.new)
+my_publisher.subscribe(MyListener.new, broadcaster: Wisper::Celluloid::CelluloidBroadcaster.new)
 ```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/wisper-celluloid/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Please send a Pull Request.

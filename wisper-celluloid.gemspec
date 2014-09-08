@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "wisper-celluloid"
   spec.version       = Wisper::Celluloid::VERSION
   spec.authors       = ["Kris Leech"]
-  spec.email         = ["kleech@housetrip.com"]
+  spec.email         = ["kris.leech@gmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
   spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = ""

@@ -1,3 +1,3 @@
 require "wisper"
-require "wisper/invokers/celluloid"
+require "wisper/celluloid/celluloid_broadcaster"
 require "wisper/celluloid/version"
