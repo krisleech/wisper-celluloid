@@ -4,3 +4,5 @@ gemspec
 
 # unreleased version of wisper
 gem 'wisper', github: 'krisleech/wisper', branch: 'invoker-adapter'
+
+gem 'coveralls', require: false

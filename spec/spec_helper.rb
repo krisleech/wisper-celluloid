@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'wisper/celluloid'
 
 RSpec.configure do |config|
