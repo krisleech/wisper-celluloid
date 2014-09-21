@@ -8,6 +8,6 @@ RSpec.describe 'configuration' do
   end
 
   it 'adds celluloid as async broadcaster' do
-    expect(configuration.broadcasters[:async]).to be_an_instance_of(Wisper::Celluloid::CelluloidBroadcaster)
+    expect(configuration.broadcasters[:async]).to be_an_instance_of(Wisper::CelluloidBroadcaster)
   end
 end
