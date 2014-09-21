@@ -39,4 +39,4 @@ See the [build status](https://travis-ci.org/krisleech/wisper-async) for details
 
 ## Contributing
 
-Yes please, please open an issue.
+Yes please, either submit a PR or open an issue first to discuss your thoughts.
