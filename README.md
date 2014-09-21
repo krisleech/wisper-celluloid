@@ -1,4 +1,6 @@
-# Wisper::Celluloid [WIP]
+# Wisper::Celluloid
+
+Note: This will not work until Wisper > 1.4.0 is released.
 
 Provides async event broadcasting to
 [Wisper](https://github.com/krisleech/wisper) gem using
@@ -6,14 +8,14 @@ Provides async event broadcasting to
 
 ## Installation
 
-    gem 'wisper-celluloid'
+```ruby
+gem 'wisper-celluloid'
+```
 
 ## Usage
 
-You just need to specifiy the `broadcaster` option when subscribing:
-
 ```ruby
-my_publisher.subscribe(MyListener.new, broadcaster: Wisper::Celluloid::CelluloidBroadcaster.new)
+my_publisher.subscribe(MyListener.new, async: true)
 ```
 
 ## Contributing

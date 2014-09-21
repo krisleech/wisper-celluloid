@@ -19,6 +19,15 @@ module Wisper
           terminate
         end
       end
+
+      def self.register
+        Wisper.configure do |config|
+          config.broadcaster :celluloid, CelluloidBroadcaster.new
+          config.broadcaster :async,     CelluloidBroadcaster.new
+        end
+      end
     end
   end
 end
+
+Wisper::Celluloid::CelluloidBroadcaster.register
