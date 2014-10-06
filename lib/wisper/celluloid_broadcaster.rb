@@ -3,7 +3,7 @@ require 'celluloid/autostart'
 module Wisper
   class CelluloidBroadcaster
     def broadcast(subscriber, publisher, event, args)
-      Wrapper.new(subscriber).async.broadcast(event, *args)
+      Wrapper.new(subscriber).async.broadcast(event, args)
     end
 
     class Wrapper
@@ -13,7 +13,7 @@ module Wisper
         @subscriber = subscriber
       end
 
-      def broadcast(event, *args)
+      def broadcast(event, args)
         @subscriber.public_send(event, *args)
         terminate
       end
