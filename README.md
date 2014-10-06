@@ -1,10 +1,7 @@
 # Wisper::Celluloid
 
-Note: This will not work until Wisper > 1.4.0 is released.
-
-Provides async event broadcasting to
-[Wisper](https://github.com/krisleech/wisper) using
-[Celluloid](https://github.com/celluloid/celluloid).
+Provides [Wisper](https://github.com/krisleech/wisper) with asynchronous event
+publishing using [Celluloid](https://github.com/celluloid/celluloid) actors.
 
 [![Gem Version](https://badge.fury.io/rb/wisper-celluloid.png)](http://badge.fury.io/rb/wisper-celluloid)
 [![Code Climate](https://codeclimate.com/github/krisleech/wisper-celluloid.png)](https://codeclimate.com/github/krisleech/wisper-celluloid)
@@ -23,8 +20,6 @@ gem 'wisper-celluloid'
 my_publisher.subscribe(MyListener.new, async: true)
 ```
 
-This leans on Celluloid.
-
 The listener is transparently turned in to a Celluloid Actor.
 
 Please refer to [Celluloid](https://github.com/celluloid/celluloid/wiki)
@@ -33,9 +28,8 @@ for more information, particularly the
 
 ## Compatibility
 
-Tested with 1.9.x, 2.x, JRuby and Rubinius.
+Tested with 1.9.3, 2.x, JRuby and Rubinius.
 See the [build status](https://travis-ci.org/krisleech/wisper-async) for details.
-
 
 ## Contributing
 
