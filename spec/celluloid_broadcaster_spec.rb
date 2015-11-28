@@ -1,3 +1,5 @@
+require 'pathname'
+
 module Wisper
   describe CelluloidBroadcaster do
     FILE_PATH = Pathname(File.dirname(__FILE__)).join('test_file')
@@ -33,7 +35,7 @@ module Wisper
     # for sanity...
     describe 'without CelluloidBroadcaster' do
       it "takes longer than #{SLEEP_FOR} seconds" do
-        publisher.add_listener(MyListener.new)
+        publisher.subscribe(MyListener.new)
         duration = time { publisher.ping }
         expect(duration).to be > SLEEP_FOR
         expect(file_touched?).to eql true
@@ -42,7 +44,7 @@ module Wisper
     end
 
     it "takes less than #{SLEEP_FOR} seconds" do
-      publisher.add_listener(MyListener.new, async: subject)
+      publisher.subscribe(MyListener.new, async: subject)
       duration = time { publisher.ping }
       expect(duration).to be < SLEEP_FOR
       expect(file_touched?).to eql true
