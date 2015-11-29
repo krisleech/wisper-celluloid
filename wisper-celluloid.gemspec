@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
 
-  spec.add_dependency 'wisper'
-  spec.add_dependency 'celluloid'
+  spec.add_dependency 'wisper', "2.0.0.rc1"
+  spec.add_dependency 'celluloid', "0.17.2"
 end

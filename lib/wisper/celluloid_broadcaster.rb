@@ -1,4 +1,4 @@
-require 'celluloid/autostart'
+require 'celluloid/current'
 
 module Wisper
   class CelluloidBroadcaster
