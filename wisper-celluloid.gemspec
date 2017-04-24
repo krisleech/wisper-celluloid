@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
 
   spec.add_dependency 'wisper', "~> 2.0.0"
-  spec.add_dependency 'celluloid', "~> 0.17.2"
+  spec.add_dependency 'celluloid', "~> 0.17"
 end
