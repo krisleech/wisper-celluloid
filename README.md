@@ -28,7 +28,7 @@ for more information, particularly the
 
 ## Compatibility
 
-Tested with 1.9.3, 2.x, JRuby and Rubinius.
+Tested with 2.x, JRuby and Rubinius.
 See the [build status](https://travis-ci.org/krisleech/wisper-async) for details.
 
 ## Contributing
